@@ -1,10 +1,12 @@
-import os
-import shutil
+try:
+    import shutil
+    import os
+    from flask import Flask, request, Response, jsonify, render_template, redirect
+    from flask import send_from_directory, send_file
+    from src.PredictionPipeline import PreditionClass
+except Exception as e:
+    raise e
 
-from flask import Flask,request,Response,jsonify,render_template,redirect
-from flask import send_from_directory,send_file
-from src.PredictionPipeline import PreditionClass
-import zipfile
 
 
 
@@ -34,14 +36,37 @@ def ImagesPrediction():
         except:
             pass
 
+        try:
+            try:
+                if os.path.isdir("static/Records/"):
+                    shutil.rmtree("static/Records/")
+                    # os.rmdir("static/Records/")
+            except:
+                pass
+            try:
+                if not os.path.isdir("static/Records"):
+                    os.makedirs("static/Records")
+            except:
+                pass
+
+        except Exception as e:
+            print(e)
+            pass
+
         input_start = int(request.form['input_start'])
         input_end = int(request.form['input_end'])
         data = request.files['file']
         data.save("ori1.nii")
         result = PredictObj.Prediction(input_start,input_end)
         if result == True:
-            os.remove("ori1.nii")
-            return render_template("results.html")
+            try:
+                os.remove("ori1.nii")
+            except:
+                pass
+
+            lis = os.listdir("static/Records")
+            return render_template("results.html",images=lis)
+
         else:
             return "Unsuccessfull prediction"
     except Exception as e:
