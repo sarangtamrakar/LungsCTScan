@@ -4,6 +4,8 @@ try:
     from flask import Flask, request, Response, jsonify, render_template, redirect
     from flask import send_from_directory, send_file
     from src.PredictionPipeline import PreditionClass
+    import jinja2
+
 except Exception as e:
     raise e
 
