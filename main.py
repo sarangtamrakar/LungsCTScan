@@ -72,7 +72,11 @@ def ImagesPrediction():
         else:
             return "Unsuccessfull prediction"
     except Exception as e:
-        os.remove("ori1.nii")
+        try:
+            os.remove("ori1.nii")
+        except:
+            pass
+
         return "Exception : "+str(e)
 
 
