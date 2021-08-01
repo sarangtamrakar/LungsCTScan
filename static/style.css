@@ -1,0 +1,49 @@
+.title{
+    text-align: center;
+    padding-top: 5vh;
+    padding-bottom: 6vh;
+}
+.upload-text{
+    font-size: 4vh;
+    text-align: center;
+}
+.upload-input{
+    text-align: center;
+    text-align-last: auto;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+    padding-left: 10%;
+}
+body{
+    background: grey;
+}
+.container{
+    background: white;
+    padding-top: 3vh;
+    border-radius: 12px;
+    padding-bottom: 3vh;
+}
+.resultImage{
+    height: 55vh;
+}
+.Mask{
+    justify-content: center;
+    text-align: center;
+}
+.upload-image{
+    justify-content: center;
+    text-align: center;
+}
+.form{
+    text-align: center;
+    justify-self: center;
+    width: 3rem;
+}
+
+.form-bottommar{
+    margin-bottom: 3vh;
+}
+
+.range-title{
+    font-size: 4vh;
+}

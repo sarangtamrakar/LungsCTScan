@@ -1,0 +1,27 @@
+datapreprocesseing:
+  Rawdata_dir: Data/rawData
+  trainImgPath: Data/rawData/TrainImages
+  trainMaskPath: Data/rawData/TrainImages
+  im_height: 256
+  im_width: 256
+  completeimages: Data/ProcessedData/complete_images.npy
+  completemasks: Data/ProcessedData/complete_masks.npy
+
+splitData:
+  testSize: 0.25
+  shuffle: True
+
+ModelBuilding:
+  im_height: 256
+  im_width: 256
+  ModelCheckPointDir: 'ModelData/CheckpointAUG/Unetmodel.hdf5'
+  TensorBoardLogsDir : 'ModelData/UnetLogsAUG/'
+  Epochs: 200
+  batchSize: 16
+  historyDf: 'ModelData/unetlogsAUG.csv'
+
+Predition:
+  ModelPath: "Unetmodel.hdf5"
+  PredictionFilePath: "ori1.nii"
+
+
