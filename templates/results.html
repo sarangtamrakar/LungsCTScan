@@ -19,14 +19,14 @@
                         <div id="carouselExampleIndicators" class="carousel carousel-dark slide" data-bs-ride="carousel">
                           {% for img in images %}
                             <div class="carousel-indicators">
-                              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{img}}" class="active" aria-current="true" aria-label="{{img.name()}}"></button>
+                              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{img}}" class="active" aria-current="true" aria-label="{{img}}"></button>
                             </div>
                           {% endfor %}
 
                           {% for img in images %}
                             <div class="carousel-inner">
                               <div class="carousel-item active">
-                                <img src={{img.src()}} alt="{{img.name()}}")}} class="d-block resultImage mx-auto" alt="...">
+                                <img src='../static/Records/{{img}}' alt={{img}} class="d-block resultImage mx-auto">
                                 <div class="carousel-caption d-none d-md-block">
                                   <h4>{{img.name()}}</h4>
                                 </div>
