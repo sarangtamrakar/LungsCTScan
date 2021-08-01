@@ -84,9 +84,9 @@ class PreditionClass:
             train_images = tf.expand_dims(train_images, axis=3)
             result = self.Model.predict(train_images)
             result = result.squeeze(axis=3)
-            for i in range(len(result)):
+            for i,j in zip(range(len(result)),range(input_start,input_end)):
                 img = result[i]
-                plt.imsave("static/Records/{}.png".format(i), img)
+                plt.imsave("static/Records/{}.png".format(j), img)
 
 
 

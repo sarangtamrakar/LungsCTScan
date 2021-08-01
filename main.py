@@ -66,7 +66,7 @@ def ImagesPrediction():
             except:
                 pass
 
-            lis = os.listdir("static/Records")
+            lis = sorted(os.listdir("static/Records"))
             return render_template("results.html",images=lis)
 
         else:
