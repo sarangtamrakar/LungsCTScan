@@ -58,27 +58,22 @@ class PreditionClass:
                         return: It returns the array
                 """
         try:
-            path = 'static/Records/'
-            try:
-                for im in os.listdir(path):
-                    try:
-                        os.remove(im)
-                    except:
-                        continue
-            except:
-                pass
-
 
             images = self.read_nii(self.preditionFileName)
             slices = images.shape[2]
             if (input_start > slices) or (input_end > slices):
                 return "Please give slices range under {} range".format(slices)
 
+            input_end = input_end+1
             train_images = []
             for slic in range(input_start,input_end):
                 img = np.array(images[:, :, slic])
                 img2D = cv2.resize(img, (256, 256))
                 train_images.append(img2D)
+
+            # saving original image
+            for img, name in zip(range(len(train_images)), range(input_start, input_end)):
+                plt.imsave("static/Records/Original/original_{}.png".format(name), train_images[img])
 
             train_images = np.array(train_images).astype("uint8")
             train_images = tf.expand_dims(train_images, axis=3)
@@ -86,7 +81,7 @@ class PreditionClass:
             result = result.squeeze(axis=3)
             for i,j in zip(range(len(result)),range(input_start,input_end)):
                 img = result[i]
-                plt.imsave("static/Records/{}.png".format(j), img)
+                plt.imsave("static/Records/Masked/{}.png".format(j), img)
 
 
 

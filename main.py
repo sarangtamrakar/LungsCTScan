@@ -40,14 +40,18 @@ def ImagesPrediction():
 
         try:
             try:
-                if os.path.isdir("static/Records/"):
-                    shutil.rmtree("static/Records/")
+                if os.path.isdir("static/Records/Masked"):
+                    shutil.rmtree("static/Records/Masked")
+                if os.path.isdir("static/Records/Original"):
+                    shutil.rmtree("static/Records/Original")
                     # os.rmdir("static/Records/")
             except:
                 pass
             try:
-                if not os.path.isdir("static/Records"):
-                    os.makedirs("static/Records")
+                if not os.path.isdir("static/Records/Masked"):
+                    os.makedirs("static/Records/Masked")
+                if not os.path.isdir("static/Records/Original"):
+                    os.makedirs("static/Records/Original")
             except:
                 pass
 
@@ -66,8 +70,9 @@ def ImagesPrediction():
             except:
                 pass
 
-            lis = sorted(os.listdir("static/Records"))
-            return render_template("results.html",images=lis)
+            lis_original = sorted(os.listdir("static/Records/Original"))
+            lis_masks = sorted(os.listdir("static/Records/Masked"))
+            return render_template("results.html",imagesOriginal=lis_original,imagesMasked=lis_masks)
 
         else:
             return "Unsuccessfull prediction"
